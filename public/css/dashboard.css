@@ -162,6 +162,7 @@
 
 .messages {
   height: 90vh;
+  overflow-y: scroll;
 }
 
 .send_side {
