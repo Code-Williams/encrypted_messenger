@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/main.css" />
     <link rel="stylesheet" href="/css/dashboard.css" />
     <link rel="stylesheet" href="/css/fonts.css" />
+    <script src="/js/dashboard-scripts.js" defer></script>
   </head>
   <body>
     <% for(const key in flash){ %>
@@ -90,10 +91,10 @@
 
         <% if(messages){ %>
 
-        <ul class="messages">
+        <ul id="messages">
           <% messages.forEach(message => { %>
 
-          <li class="message">
+          <li class="message" id="<%= message.id %>">
             <div class="sub-message <%= (message.sender_id == user.id) ? "right" : "left" %>-side">
               <!-- <div class="reply-side">
                 <div class="message-reply">
