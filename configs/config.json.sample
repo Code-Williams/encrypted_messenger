@@ -1,0 +1,19 @@
+{
+  "app": {
+    "secret": "SECRET",
+    "port": PORT
+  },
+
+  "errors": {
+    "403": {
+      "code": 403,
+      "msg": "You dont have enough permission."
+    }
+  },
+
+  "db": {
+    "name": "DB NAME",
+    "username": "DB USERNAME",
+    "password": "DB PASSWORD"
+  }
+}

@@ -1,0 +1,122 @@
+* {
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+body {
+  background-color: rgb(70, 70, 70);
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  transition: color 0.2s ease-in-out;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+  padding: 5px 20px;
+  font-weight: bold;
+  background-color: rgb(37, 37, 37);
+  color: white;
+  border-radius: 10px;
+  border: 1px solid rgb(37, 37, 37);
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: transparent;
+}
+
+.btn-danger:hover {
+  color: rgb(115, 3, 3);
+}
+
+input {
+  margin: 10px 0;
+  padding: 5px;
+  border: 1px solid rgb(140, 140, 140);
+  background-color: rgb(37, 37, 37);
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+  background-color: rgb(37, 37, 37);
+  outline: none;
+  color: white;
+}
+
+textarea {
+  border: 1px solid rgb(37, 37, 37);
+  padding: 5px;
+  border-radius: 10px;
+}
+
+.btn {
+  float: right;
+  border: 1px solid gray;
+  background-color: transparent;
+  padding: 2px 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+}
+
+.btn-danger {
+  background-color: rgba(255, 0, 0, 0.125);
+  color: rgb(145, 4, 4);
+  border: 1px solid rgb(255, 0, 0);
+}
+
+.btn-success {
+  border-radius: 1px solid green;
+  background-color: rgba(0, 255, 0, 0.164);
+  color: rgb(0, 82, 0);
+}
+
+.flash {
+  position: fixed;
+  background-color: rgba(0, 145, 255, 0.2);
+  border: 1px solid rgb(0, 145, 255);
+  color: rgb(1, 68, 119);
+  border-radius: 15px;
+  bottom: 10px;
+  right: 10px;
+  direction: rtl;
+  padding: 10px;
+}
+
+.flash-error {
+  background-color: rgb(249, 154, 154);
+  color: rgb(156, 6, 6);
+  border: 1px solid red;
+}
+
+.flash-danger {
+  background-color: rgb(249, 154, 154);
+  color: rgb(156, 6, 6);
+  border: 1px solid red;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.ltr {
+  direction: ltr;
+  text-align: left;
+}

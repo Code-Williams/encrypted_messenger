@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="stylesheet" href="/css/login.css" />
+    <link rel="stylesheet" href="/css/fonts.css" />
+
+    <title>AriDorri login page</title>
+  </head>
+  <body>
+    <% for(const key in flash){ %>
+
+    <span role="alert" class="flash flash-<%= key %>"> <%= flash[key] %> </span>
+
+    <% } %>
+
+    <div id="login-main">
+      <form action="/login" method="post">
+        <h1 style="float: left">Login</h1>
+        <div>
+          <input type="text" name="username" placeholder="Username" />
+          <input type="password" name="password" placeholder="Password" />
+        </div>
+        <button type="submit">ورود</button>
+      </form>
+    </div>
+  </body>
+</html>
