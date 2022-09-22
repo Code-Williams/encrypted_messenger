@@ -53,13 +53,32 @@ const post = async (req, res) => {
           username: req.body.id,
         },
       });
+
       if (isUserValid) {
-        await DMList.create({
-          creator_id: req.user.id,
-          chatter_id: isUserValid.id,
-          creator_name: req.user.username,
-          chatter_name: isUserValid.username,
+        const firstDMList = await DMList.findOne({
+          where: {
+            creator_id: req.user.id,
+            chatter_id: isUserValid.id,
+          },
         });
+
+        const secondDMList = await DMList.findOne({
+          where: {
+            creator_id: isUserValid.id,
+            chatter_id: req.user.id,
+          },
+        });
+
+        if (firstDMList || secondDMList) {
+          req.flash("danger", "You have converstation with this user.");
+        } else {
+          await DMList.create({
+            creator_id: req.user.id,
+            chatter_id: isUserValid.id,
+            creator_name: req.user.username,
+            chatter_name: isUserValid.username,
+          });
+        }
       } else {
         req.flash("danger", "User is not defined");
       }
