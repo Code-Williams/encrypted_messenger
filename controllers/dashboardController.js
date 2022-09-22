@@ -19,6 +19,8 @@ const get = async (req, res) => {
     firstDMList,
     secondDMList,
     messages: null,
+    chatId: 0,
+    mode: "chats",
   });
 };
 

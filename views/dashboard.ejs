@@ -10,7 +10,19 @@
     <link rel="stylesheet" href="/css/fonts.css" />
   </head>
   <body>
+    <% for(const key in flash){ %>
+
+      <span role="alert" class="flash flash-<%= key %>"> <%= flash[key] %> </span>
+  
+      <% } %>
+
     <div class="left">
+      <div class="leftItems">
+        <a href="/chat/new" class="new_chat">
+          <img src="/media/icons/chat.png" alt="">
+        </a>
+      </div>
+
       <ul class="dms">
         <% if(firstDMList.length == 0 && secondDMList.length == 0){ %>
 
@@ -20,7 +32,7 @@
 
         <% }else{ %> <% firstDMList.forEach((dm) => { %>
 
-        <li class="dm">
+        <li class="dm <%= (dm.id == chatId) ? "active" : "" %>">
           <a href="/chat/<%= dm.id %>">
             <div class="image-handler">
               <img
@@ -64,47 +76,61 @@
       >
     </div>
     <div class="right">
-      <% if(messages){ %>
+      <% if(mode == "new chat"){ %>
 
-      <ul class="messages">
-        <% messages.forEach(message => { %>
-
-        <li class="message">
-          <div class="sub-message <%= (message.sender_id == user.id) ? "right" : "left" %>-side">
-            <!-- <div class="reply-side">
-              <div class="message-reply">
-                <p class="reply-username">Shayan</p>
-                <p class="reply-message">Salam khoobi?</p>
-              </div>
-            </div> -->
-
-            <p class="message-username"><%= (message.sender_id == user.id) ? "You" : "User" %></p>
-            <p class="message-message"><%= message.text %></p>
-          </div>
-        </li>
-
-        <% }) %>
-      </ul>
-
-      <div class="send_side">
-        <form class="send_side_form" action="/chat/<%= chatId %>" method="post">
-
-          <input type="text" name="text" id="text_input" placeholder="Write your message..." autocomplete="off" required>
-          <button type="submit" id="text_send">
-            Send
-          </button>
-
-        </form>
-
-      </div>
+        <div class="newChatSide">
+          <form class="newChatBox" method="post" action="/chat/new">
+            <p>Type a username to start chatting with</p> 
+            <input type="text" name="id" placeholder="User name" required autofocus autocomplete="off">
+            <button type="submit">Start</button>
+          </form>
+        </div>
 
       <% }else{ %>
 
-      <div class="no-chat-selected">
-        <p>No Chat Selected</p>
-      </div>
+        <% if(messages){ %>
 
+        <ul class="messages">
+          <% messages.forEach(message => { %>
+
+          <li class="message">
+            <div class="sub-message <%= (message.sender_id == user.id) ? "right" : "left" %>-side">
+              <!-- <div class="reply-side">
+                <div class="message-reply">
+                  <p class="reply-username">Shayan</p>
+                  <p class="reply-message">Salam khoobi?</p>
+                </div>
+              </div> -->
+
+              <p class="message-username"><%= (message.sender_id == user.id) ? "You" : "User" %></p>
+              <p class="message-message"><%= message.text %></p>
+            </div>
+          </li>
+
+          <% }) %>
+        </ul>
+
+        <div class="send_side">
+          <form class="send_side_form" action="/chat/<%= chatId %>" method="post">
+
+            <input type="text" name="text" id="text_input" placeholder="Write your message..." autocomplete="off" required autofocus>
+            <button type="submit" id="text_send">
+              Send
+            </button>
+
+          </form>
+
+        </div>
+
+        <% }else{ %>
+
+        <div class="no-chat-selected">
+          <p>No Chat Selected</p>
+        </div>
+
+        <% } %>
       <% } %>
+
     </div>
   </body>
 </html>

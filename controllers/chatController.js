@@ -1,4 +1,5 @@
 const DMList = require("../models/DmList");
+const User = require("../models/User");
 const Message = require("../models/Message");
 
 const get = async (req, res) => {
@@ -19,6 +20,20 @@ const get = async (req, res) => {
     },
   });
 
+  if (req.params.id == "new") {
+    res.render("dashboard", {
+      user: req.user,
+      flash: req.flash(),
+      firstDMList,
+      secondDMList,
+      messages: null,
+      chatId: 0,
+      mode: "new chat",
+    });
+
+    return;
+  }
+
   res.render("dashboard", {
     user: req.user,
     flash: req.flash(),
@@ -26,15 +41,38 @@ const get = async (req, res) => {
     secondDMList,
     messages,
     chatId: req.params.id,
+    mode: "chat messages",
   });
 };
 
 const post = async (req, res) => {
-  await Message.create({
-    chat_id: req.params.id,
-    text: req.body.text,
-    sender_id: req.user.id,
-  });
+  if (req.body.id) {
+    if (req.body.id !== req.user.username) {
+      const isUserValid = await User.findOne({
+        where: {
+          username: req.body.id,
+        },
+      });
+      if (isUserValid) {
+        await DMList.create({
+          creator_id: req.user.id,
+          chatter_id: isUserValid.id,
+          creator_name: req.user.username,
+          chatter_name: isUserValid.username,
+        });
+      } else {
+        req.flash("danger", "User is not defined");
+      }
+    } else {
+      req.flash("danger", "You can't start converstation to your self");
+    }
+  } else {
+    await Message.create({
+      chat_id: req.params.id,
+      text: req.body.text,
+      sender_id: req.user.id,
+    });
+  }
 
   res.redirect(`/chat/${req.params.id}`);
 };
