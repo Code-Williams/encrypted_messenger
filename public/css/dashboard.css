@@ -198,7 +198,7 @@ html {
 
 .send_side_form {
   width: 88%;
-  background-color: black;
+  background-color: rgb(25, 25, 25);
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -224,4 +224,13 @@ html {
   background-color: rgb(47, 47, 47);
   padding: 20px;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#encryptMsgBtn-Handler > label {
+  color: gray;
+  font-size: 14px;
 }
