@@ -8,7 +8,7 @@ const get = (req, res) => {
 };
 
 const post = passport.authenticate("local", {
-  failureRedirect: "/login",
+  failureRedirect: "/voroodi",
   failureFlash: true,
   session: true,
 });
