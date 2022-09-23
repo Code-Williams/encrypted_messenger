@@ -42,6 +42,8 @@ const get = async (req, res) => {
   });
 };
 
+// ------------------ POST -----------------
+
 const post = async (req, res) => {
   if (!req.body.id) {
     const dmMessages = await Message.findAll({
