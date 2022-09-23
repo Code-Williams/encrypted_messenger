@@ -17,24 +17,25 @@ html {
   z-index: 100;
 }
 
-.dm {
-  padding: 10px;
-  margin: 5px;
+.dm > a {
   border-bottom: 1px solid rgb(47, 47, 47);
   border-radius: 10px;
   height: 60px;
   transition: background-color 0.15s ease-in-out;
 }
 
+.dm > a {
+  padding: 10px;
+  margin: 5px;
+  display: flex;
+  align-items: center;
+}
+
 .active {
   background-color: rgb(52, 52, 52);
 }
 
-.dm:first-child {
-  margin-top: 0;
-}
-
-.dm:hover {
+.dm > a:hover {
   background-color: rgb(52, 52, 52);
 }
 
