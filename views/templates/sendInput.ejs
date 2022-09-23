@@ -1,14 +1,60 @@
 <div class="send_side">
-  <form class="send_side_form" action="/chat/<%= chatId %>" method="post">
-    <input
-      type="text"
-      name="text"
-      id="text_input"
-      placeholder="Write your message..."
-      autocomplete="off"
-      required
-      autofocus
-    />
-    <button type="submit" id="text_send">Send</button>
-  </form>
+  <input
+    type="text"
+    name="text"
+    id="text_input"
+    placeholder="Write your message..."
+    autocomplete="off"
+    required
+    autofocus
+  />
+  <button type="submit" id="text_send">Send</button>
+
+  <script>
+    var btn = document.getElementById("text_send");
+    var messages = document.getElementById("messages");
+    var inp = document.getElementById("text_input");
+
+    inp.addEventListener("keypress", (e) => {
+      if (e.key == "Enter") btn.click();
+    });
+
+    btn.addEventListener("click", () => {
+      var inpText = inp.value;
+      if (inpText !== "") {
+        axios({
+          method: "post",
+          url: "/chat/<%= chatId %>",
+          data: {
+            text: inpText,
+            sender_id: "<%= user.id %>",
+          },
+        }).then((res) => {
+          var new_li = document.createElement("li");
+          var new_div = document.createElement("div");
+          var username_p = document.createElement("p");
+          var message_p = document.createElement("p");
+          var messages = document.getElementById("messages");
+
+          new_li.className = "message";
+          new_div.className = "sub-message right-side";
+          username_p.className = "message-username";
+          message_p.className = "message-message";
+
+          messages.appendChild(new_li);
+          new_li.appendChild(new_div);
+          new_div.appendChild(username_p);
+          new_div.appendChild(message_p);
+
+          new_li.id = res.data.message.id;
+
+          username_p.innerHTML = "<%= user.username %>";
+          message_p.innerHTML = inpText;
+
+          inp.value = "";
+          new_li.scrollIntoView();
+        });
+      }
+    });
+  </script>
 </div>

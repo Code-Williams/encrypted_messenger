@@ -41,6 +41,7 @@ const get = async (req, res) => {
     secondDMList,
     messages,
     chatId: req.params.id,
+    encrypt: Message.encrypt,
     mode: "chat messages",
   });
 };
@@ -85,15 +86,18 @@ const post = async (req, res) => {
     } else {
       req.flash("danger", "You can't start converstation to your self");
     }
+    res.redirect(`/chat/${req.params.id}`);
   } else {
+    console.log("req");
     await Message.create({
       chat_id: req.params.id,
       text: req.body.text,
-      sender_id: req.user.id,
+      sender_id: req.body.sender_id,
+    }).then((s) => {
+      res.statusCode = 200;
+      res.json({ sent: "ok", message: s.dataValues });
     });
   }
-
-  res.redirect(`/chat/${req.params.id}`);
 };
 
 module.exports = {
