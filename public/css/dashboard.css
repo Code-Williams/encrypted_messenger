@@ -52,13 +52,14 @@ html {
   height: 50px;
 }
 
-.chat-username,
-.chat-message {
+.chat-username {
   font-size: 14px;
 }
 
 .chat-message {
   color: rgb(185, 185, 185);
+  font-size: 13px;
+  font-weight: lighter;
 }
 
 .right {

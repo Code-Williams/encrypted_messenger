@@ -14,7 +14,7 @@
       </div>
       <div class="info-handler">
         <p class="chat-username"><%= dm.chatter_name %></p>
-        <!-- <p class="chat-message">salam chetori ?</p> -->
+        <p class="chat-message"><%= (dm.password !== null && dm.password !== false) ? `Password : ` + dm.password : "" %></p>
       </div>
     </a>
   </li>
@@ -28,7 +28,7 @@
       </div>
       <div class="info-handler">
         <p class="chat-username"><%= dm.creator_name %></p>
-        <!-- <p class="chat-message">salam chetori ?</p> -->
+        <p class="chat-message"><%= (dm.password !== null && dm.password !== false) ? `Password : ` + dm.password : "" %></p>
       </div>
     </a>
   </li>
