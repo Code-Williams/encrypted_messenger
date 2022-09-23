@@ -25,6 +25,10 @@ const DmList = db.define(
     chatter_name: {
       type: DataTypes.TEXT,
     },
+
+    password: {
+      type: DataTypes.TEXT,
+    },
   },
   {
     timestamps: false,
