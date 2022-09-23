@@ -24,6 +24,13 @@ const get = async (req, res) => {
   let mode = req.params.id == "new" ? "new chat" : "chat messages";
   if (req.params.id == "new") messages = null;
 
+  if (mode == "chat messages") {
+    const searchSecondDM = secondDMList.find((dm) => dm.id == req.params.id);
+
+    if (searchSecondDM && searchSecondDM.chatter_id == req.user.id)
+      searchSecondDM.update({ password: null });
+  }
+
   res.render("dashboard", {
     user: req.user,
     flash: req.flash(),
