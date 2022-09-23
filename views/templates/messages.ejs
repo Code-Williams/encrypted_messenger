@@ -1,0 +1,19 @@
+<ul id="messages">
+    <% messages.forEach(message => { %>
+
+    <li class="message" id="<%= message.id %>">
+      <div class="sub-message <%= (message.sender_id == user.id) ? "right" : "left" %>-side">
+        <!-- <div class="reply-side">
+          <div class="message-reply">
+            <p class="reply-username">Shayan</p>
+            <p class="reply-message">Salam khoobi?</p>
+          </div>
+        </div> -->
+
+        <p class="message-username"><%= (message.sender_id == user.id) ? "You" : "User" %></p>
+        <p class="message-message"><%= message.text %></p>
+      </div>
+    </li>
+
+    <% }) %>
+</ul>

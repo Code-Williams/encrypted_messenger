@@ -1,0 +1,45 @@
+<ul class="dms">
+    <% if(firstDMList.length == 0 && secondDMList.length == 0){ %>
+
+    <div class="no-chat-handler">
+      <p class="no-chat">No Chat Available</p>
+    </div>
+
+    <% }else{ %> <% firstDMList.forEach((dm) => { %>
+
+    <li class="dm <%= (dm.id == chatId) ? "active" : "" %>">
+      <a href="/chat/<%= dm.id %>">
+        <div class="image-handler">
+          <img
+            src="/media/icons/profile-image.svg"
+            alt=""
+            class="chat-image"
+          />
+        </div>
+        <div class="info-handler">
+          <p class="chat-username"><%= dm.chatter_name %></p>
+          <!-- <p class="chat-message">salam chetori ?</p> -->
+        </div>
+      </a>
+    </li>
+
+    <% }) %> <% secondDMList.forEach((dm) => { %>
+
+    <li class="dm">
+      <a href="/chat/<%= dm.id %>">
+        <div class="image-handler">
+          <img
+            src="/media/icons/profile-image.svg"
+            alt=""
+            class="chat-image"
+          />
+        </div>
+        <div class="info-handler">
+          <p class="chat-username"><%= dm.creator_name %></p>
+          <!-- <p class="chat-message">salam chetori ?</p> -->
+        </div>
+      </a>
+    </li>
+
+    <% }) %> <% } %>
+  </ul>

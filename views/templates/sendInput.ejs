@@ -1,0 +1,14 @@
+<div class="send_side">
+  <form class="send_side_form" action="/chat/<%= chatId %>" method="post">
+    <input
+      type="text"
+      name="text"
+      id="text_input"
+      placeholder="Write your message..."
+      autocomplete="off"
+      required
+      autofocus
+    />
+    <button type="submit" id="text_send">Send</button>
+  </form>
+</div>
