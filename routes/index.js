@@ -1,4 +1,8 @@
-const { isUserNotLoggedIn, isUserLoggedIn } = require("../helpers/auth");
+const {
+  isUserNotLoggedIn,
+  isUserLoggedIn,
+  isUserAdmin,
+} = require("../helpers/auth");
 const express = require("express");
 const Router = new express.Router();
 
@@ -6,17 +10,17 @@ const homePageController = require("../controllers/homePageController");
 Router.get("/", homePageController.get);
 
 const loginController = require("../controllers/loginController");
-Router.get("/login", isUserNotLoggedIn, loginController.get);
+Router.get("/voroodi", isUserNotLoggedIn, loginController.get);
 Router.post(
-  "/login",
+  "/voroodi",
   isUserNotLoggedIn,
   loginController.post,
   loginController.loginSuccess
 );
 
 const registerController = require("../controllers/registerController");
-Router.get("/register", isUserNotLoggedIn, registerController.get);
-Router.post("/register", isUserNotLoggedIn, registerController.post);
+Router.get("/register", isUserLoggedIn, isUserAdmin, registerController.get);
+Router.post("/register", isUserLoggedIn, isUserAdmin, registerController.post);
 
 const dashboardController = require("../controllers/dashboardController");
 Router.get("/dashboard", isUserLoggedIn, dashboardController.get);
