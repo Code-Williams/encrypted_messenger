@@ -1,0 +1,2 @@
+- [ ] User can switch between encrypt and decrypt message
+- [ ] In the first time, show password in the username side, when user clicked to chat, remove password
