@@ -236,3 +236,14 @@ html {
   color: gray;
   font-size: 14px;
 }
+
+.leftItems {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.notif {
+  color: rgb(240, 69, 69);
+  font-weight: lighter;
+}
