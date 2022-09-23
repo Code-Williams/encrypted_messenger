@@ -70,7 +70,6 @@ html {
 .left {
   float: left;
   width: 280px;
-  position: fixed;
   height: 100vh;
   background-color: rgb(32, 32, 32);
 }
