@@ -70,25 +70,6 @@ const post = async (req, res) => {
     return res.redirect("/chat/new");
   }
 
-  const firstDMList = await DMList.findOne({
-    where: {
-      creator_id: req.user.id,
-      chatter_id: isUserValid.id,
-    },
-  });
-
-  const secondDMList = await DMList.findOne({
-    where: {
-      creator_id: isUserValid.id,
-      chatter_id: req.user.id,
-    },
-  });
-
-  if (firstDMList || secondDMList) {
-    req.flash("danger", "You have converstation with this user.");
-    return res.redirect("/chat/new");
-  }
-
   const isUserValid = await User.findOne({
     where: {
       username: req.body.id,
@@ -96,6 +77,25 @@ const post = async (req, res) => {
   });
 
   if (isUserValid) {
+    const firstDMList = await DMList.findOne({
+      where: {
+        creator_id: req.user.id,
+        chatter_id: isUserValid.id,
+      },
+    });
+
+    const secondDMList = await DMList.findOne({
+      where: {
+        creator_id: isUserValid.id,
+        chatter_id: req.user.id,
+      },
+    });
+
+    if (firstDMList || secondDMList) {
+      req.flash("danger", "You have converstation with this user.");
+      return res.redirect("/chat/new");
+    }
+
     let password;
 
     req.body.encryptMsg == undefined
