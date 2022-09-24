@@ -20,6 +20,8 @@ const get = async (req, res) => {
     },
   });
 
+  let opennedDM;
+
   let chatId = req.params.id == "new" ? 0 : req.params.id;
   let mode = req.params.id == "new" ? "new chat" : "chat messages";
   if (req.params.id == "new") messages = null;
@@ -29,6 +31,12 @@ const get = async (req, res) => {
 
     if (searchSecondDM && searchSecondDM.chatter_id == req.user.id)
       searchSecondDM.update({ password: null });
+
+    if (searchSecondDM) {
+      opennedDM = searchSecondDM.creator_name;
+    } else {
+      opennedDM = firstDMList.find((dm) => dm.id == req.params.id).chatter_name;
+    }
   }
 
   res.render("dashboard", {
@@ -39,6 +47,7 @@ const get = async (req, res) => {
     messages,
     chatId,
     mode,
+    opennedDM,
   });
 };
 

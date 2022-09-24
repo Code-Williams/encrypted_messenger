@@ -1,0 +1,16 @@
+.mobile-menu {
+  background-color: rgb(32, 32, 32);
+  height: 70px;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+}
+
+.mobile-menu > * {
+  margin-left: 10px;
+}
+
+.mobile-menu > img {
+  width: 35px;
+}

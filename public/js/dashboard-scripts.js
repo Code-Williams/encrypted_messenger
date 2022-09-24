@@ -6,6 +6,23 @@ if (document.baseURI.includes("/chat/")) {
   }
 }
 
+var leftMenu = document.getElementById("left");
+var hamburger = document.getElementById("hamburger-chat");
+if (hamburger) {
+  hamburger.addEventListener("click", () => {
+    leftMenu.style.width = "70%";
+    hamburger.style.display = "none";
+  });
+}
+
+var closeMenu = document.getElementById("close-menu");
+if (closeMenu) {
+  closeMenu.addEventListener("click", () => {
+    leftMenu.style.width = "0";
+    hamburger.style.display = "block";
+  });
+}
+
 if (document.baseURI.endsWith("/new")) {
   var encryptBtn = document.getElementById("encryptMsgBtn");
   var passwordInp = document.getElementById("passInp");

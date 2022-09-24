@@ -1,0 +1,16 @@
+@media screen and (max-width: 600px) {
+  .left {
+    position: fixed;
+    overflow: hidden;
+    width: 0;
+    transition: width 0.3s ease-in-out;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  #mahsa {
+    position: absolute;
+  }
+}

@@ -4,21 +4,34 @@
     <%- include("./templates/header.ejs", { stylesheet : "dashboard", title :
     "Willi - Dashboard" }) %>
     <link rel="stylesheet" href="/css/fonts.css" />
+    <link rel="stylesheet" href="/css/responsive/dashboard.css" />
   </head>
   <body>
     <%- include("./templates/loading.ejs") %> <% for(const key in flash){ %>
 
     <span role="alert" class="flash flash-<%= key %>"> <%= flash[key] %> </span>
 
+    <% } %> <% if(mode == "chat messages"){ %>
+
+    <div class="mobile-menu">
+      <img src="/media/icons/profile-image.svg" alt="" />
+      <p><%= opennedDM %></p>
+    </div>
+
     <% } %>
 
-    <a
-      id="mahsa"
-      href="https://twitter.com/search?q=%D9%85%D9%87%D8%B3%D8%A7_%D8%A7%D9%85%DB%8C%D9%86%DB%8C"
-      >#مهسا_امینی</a
-    >
+    <span class="hamburger" id="hamburger-chat">
+      <div></div>
+      <div></div>
+      <div></div>
+    </span>
 
-    <div class="left">
+    <div class="left" id="left">
+      <a
+        id="mahsa"
+        href="https://twitter.com/search?q=%D9%85%D9%87%D8%B3%D8%A7_%D8%A7%D9%85%DB%8C%D9%86%DB%8C"
+        >#مهسا_امینی</a
+      >
       <%- include("./templates/leftItems.ejs") %> <%-
       include("./templates/dmList.ejs") %>
     </div>
