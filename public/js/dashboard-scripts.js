@@ -23,6 +23,8 @@ if (closeMenu) {
   });
 }
 
+if (navigator.userAgent.toLowerCase().includes("iphone")) window.scrollTo(0, 1);
+
 if (document.baseURI.endsWith("/new")) {
   var encryptBtn = document.getElementById("encryptMsgBtn");
   var passwordInp = document.getElementById("passInp");
