@@ -23,4 +23,9 @@
 
 #text_send {
   padding: 10px 20px;
+  line-height: 10px;
+}
+
+#text_send > img {
+  width: 20px;
 }

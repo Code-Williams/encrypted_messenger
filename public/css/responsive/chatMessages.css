@@ -19,4 +19,16 @@
   .closeMenu {
     display: flex;
   }
+
+  .send_side {
+    min-width: auto !important;
+  }
+
+  .send_side_form {
+    width: 97% !important;
+  }
+
+  #text_input {
+    width: 70% !important;
+  }
 }
