@@ -13,4 +13,12 @@
   #mahsa {
     position: absolute;
   }
+
+  .hamburger {
+    display: block;
+  }
+
+  .mobile-menu {
+    display: block;
+  }
 }

@@ -130,6 +130,7 @@ textarea {
   padding: 13px;
   border-radius: 7px;
   z-index: 100;
+  display: none;
 }
 
 .hamburger > div {
