@@ -42,7 +42,7 @@ try {
 //   });
 // });
 
-var loadingPage = document.getElementById("loader");
+var loadingPage = document.getElementById("outer");
 window.addEventListener("load", () => {
   loadingPage.style.display = "none";
 });

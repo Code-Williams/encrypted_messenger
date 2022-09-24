@@ -1,0 +1,16 @@
+#outer {
+height: 5px;
+background-color:I#666666;
+position: relative;
+overflow: hidden;
+}
+.inner {
+height: 100%;
+position: absolute;
+background-color:#b1fffe;
+animation: loading 2s infinite;
+}
+@keyframes loading {
+from {width: 5%; left: -5%;}
+to {width: 75%; left: 105%;}
+}
