@@ -42,6 +42,7 @@ try {
 //   });
 // });
 
-// window.addEventListener("load", () => {
-//   loadingPage.style.display = "none";
-// });
+var loadingPage = document.getElementById("loader");
+window.addEventListener("load", () => {
+  loadingPage.style.display = "none";
+});

@@ -5,7 +5,7 @@
     "Login"}) %>
   </head>
   <body>
-    <% for(const key in flash){ %>
+    <%- include("./templates/loading.ejs") %> <% for(const key in flash){ %>
 
     <span role="alert" class="flash flash-<%= key %>"> <%= flash[key] %> </span>
 
