@@ -114,7 +114,6 @@ html {
 .no-chat-selected > p {
   font-size: 40px;
   color: rgb(98, 98, 98);
-
   user-select: none;
   -ms-user-select: none;
   -moz-user-select: none;
