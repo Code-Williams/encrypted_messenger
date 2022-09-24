@@ -5,3 +5,6 @@
       [ ] When recieve message
       [x] When sending message
 - [ ] Fully responsive page
+- [ ] Namayesh dadane dayere samte chap baraye payame jadid
+- [ ] Namayesh dadane gozine seen
+- [ ] Active kardane delete message
