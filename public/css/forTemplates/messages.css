@@ -1,0 +1,59 @@
+#messages {
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+#messages::-webkit-scrollbar {
+  display: none;
+}
+
+#messages {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.message {
+  width: 100%;
+  display: inline-block;
+}
+
+.sub-message {
+  padding: 10px;
+  min-width: 150px;
+  max-width: 50%;
+  border-radius: 10px;
+}
+
+.left-side > .reply-side > .message-reply {
+  background-color: rgb(132, 132, 132);
+  border-left: 2px solid white;
+}
+
+.right-side > .reply-side > .message-reply {
+  background-color: rgb(67, 67, 67);
+  border-left: 2px solid black;
+}
+
+.message-reply {
+  width: 100%;
+  float: left;
+  height: 50px;
+  border-radius: 5px;
+}
+
+.reply-username,
+.reply-message {
+  font-size: 13px;
+  margin-left: 5px;
+  margin-top: 3px;
+}
+
+.reply-side {
+  width: 100%;
+  display: inline-block;
+  height: 40px;
+}
+
+.message-username:not(:first-child) {
+  margin-top: 10px;
+}

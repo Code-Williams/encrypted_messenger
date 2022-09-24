@@ -1,0 +1,26 @@
+.send_side {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-width: 600px;
+}
+
+.send_side_form {
+  width: 88%;
+  background-color: rgb(25, 25, 25);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+}
+
+#text_input {
+  width: 80%;
+  padding: 10px;
+}
+
+#text_send {
+  padding: 10px 20px;
+}
