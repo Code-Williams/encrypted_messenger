@@ -21,4 +21,6 @@ socket.on("message", (data) => {
 
   username_p.innerHTML = data.username;
   message_p.innerHTML = data.message;
+
+  new_li.scrollIntoView();
 });
