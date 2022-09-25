@@ -60,7 +60,7 @@ const post = async (req, res) => {
       },
     });
 
-    if (dmMessages[29]) dmMessages[0].destroy();
+    if (dmMessages[29]) await dmMessages[0].destroy();
 
     await Message.create({
       chat_id: req.params.id,
