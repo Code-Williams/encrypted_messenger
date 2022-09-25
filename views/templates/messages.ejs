@@ -14,10 +14,13 @@
           </div>
         </div> -->
 
-        <p class="message-username"><%= (message.sender_id == user.id) ? "You" : "User" %></p>
+        <p class="message-username"><%= (message.sender_id == user.id) ? "You" : opennedDM %></p>
         <p class="message-message"><%= message.text %></p>
       </div>
     </li>
 
     <% }) %>
+
+<script src="/js/script.js"></script>
+
 </ul>
