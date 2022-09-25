@@ -6,6 +6,10 @@
     transition: width 0.3s ease-in-out;
   }
 
+  .dms {
+    overflow: scroll;
+  }
+
   .right {
     width: 100%;
   }
