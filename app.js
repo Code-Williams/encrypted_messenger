@@ -21,7 +21,7 @@ const eventsDir = fs
   .filter((file) => file.endsWith(".js"));
 
 socketIO.on("connection", (socket) => {
-  console.log(`⚡: ${socket.id} user just connected`);
+  console.log(`-------------------- ⚡: ${socket.id} user just connected`);
 
   for (const i of eventsDir) {
     const reqEvent = require(`./events/${i}`);
