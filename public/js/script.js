@@ -1,4 +1,4 @@
-const socket = io("http://localhost:80", { transports: ["websocket"] });
+const socket = io("ws://localhost:80", { transports: ["websocket"] });
 const sendContainer = document.getElementById("text_send");
 const textInput = document.getElementById("text_input");
 let roomOrg = window.location.href.split("/");
