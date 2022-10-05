@@ -33,7 +33,8 @@ const get = async (req, res) => {
 
   let opennedDM = firstDMList.find((dm) => dm.id == req.params.id);
   if (!opennedDM) {
-    opennedDM = secondDMList.find((dm) => dm.id == req.params.id).creator_name;
+    opennedDM = secondDMList.find((dm) => dm.id == req.params.id);
+    if (opennedDM) opennedDM = opennedDM.creator_name;
   } else {
     opennedDM = opennedDM.chatter_name;
   }
@@ -53,26 +54,6 @@ const get = async (req, res) => {
 // ------------------ POST -----------------
 
 const post = async (req, res) => {
-  if (!req.body.id) {
-    const dmMessages = await Message.findAll({
-      where: {
-        chat_id: req.params.id,
-      },
-    });
-
-    if (dmMessages[29]) await dmMessages[0].destroy();
-
-    await Message.create({
-      chat_id: req.params.id,
-      text: req.body.text,
-      sender_id: req.body.sender_id,
-    }).then((s) => {
-      res.statusCode = 200;
-      res.json({ sent: "ok", message: s.dataValues });
-    });
-    return;
-  }
-
   if (req.body.id == req.user.username) {
     req.flash("danger", "You can't start converstation to your self");
     return res.redirect("/chat/new");
