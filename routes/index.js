@@ -29,6 +29,17 @@ const chatController = require("../controllers/chatController");
 Router.get("/chat/:id", isUserLoggedIn, chatController.get);
 Router.post("/chat/:id", isUserLoggedIn, chatController.post);
 
+const newMessageController = require("../controllers/newMessageController");
+Router.post("/newMessage", newMessageController.post);
+
+Router.get("/userInfo", (req, res) => {
+  if (req.user) {
+    res.send(req.user);
+  } else {
+    res.redirect("/login");
+  }
+});
+
 Router.get("*", (req, res) => {
   res.render("error", { code: 404, msg: "Page not found" });
 });
