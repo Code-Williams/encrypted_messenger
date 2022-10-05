@@ -12,7 +12,7 @@ if (roomOrg.includes("chat")) {
 }
 
 textInput.addEventListener("keypress", (e) => {
-  if (e.key == "Enter") btn.click();
+  if (e.key == "Enter") sendContainer.click();
 });
 
 sendContainer.addEventListener("click", async (e) => {
