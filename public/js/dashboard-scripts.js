@@ -41,25 +41,9 @@ if (document.baseURI.endsWith("/new")) {
 // var userData = navigator.userAgent;
 // console.log(userData);
 
-try {
-  navigator.getBattery().then((battery) => {
-    var lvl = battery.level * 100;
-    if (lvl <= 20) {
-      var notif = document.getElementById("notif");
-      notif.innerHTML = "Low Battery";
-      notif.style.color = "rgb(240, 69, 69)";
-    }
-  });
-} catch (error) {}
-
 // Notification.requestPermission().then(() => {
 //   var myNotif = new Notification("Header", {
 //     body: "Body",
 //     icon: "icon url",
 //   });
 // });
-
-var loadingPage = document.getElementById("outer");
-window.addEventListener("load", () => {
-  loadingPage.style.display = "none";
-});
