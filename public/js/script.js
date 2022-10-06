@@ -1,48 +1,52 @@
-const socket = io("ws://aridorri.ir:80", {
-	secure : true
+let roomOrg = window.location.href.split("/");
+let room = roomOrg[roomOrg.length - 1];
+let url = roomOrg[2];
+url.includes("www.") ? url.replace("www.", "") : "";
+
+const socket = io(`ws://${url}:80`, {
+  secure: true,
 });
 const sendContainer = document.getElementById("text_send");
 const textInput = document.getElementById("text_input");
-let roomOrg = window.location.href.split("/");
-let room = roomOrg[roomOrg.length - 1];
+const connectInformation = document.getElementById("connect-information");
 
 if (roomOrg.includes("chat")) {
   socket.emit("joinRoom", {
     username: "User",
     room,
   });
-}
 
-textInput.addEventListener("keypress", (e) => {
-  if (e.key == "Enter") sendContainer.click();
-});
-
-sendContainer.addEventListener("click", async (e) => {
-  e.preventDefault();
-
-  const message = textInput.value;
-
-  await axios.get("/userInfo").then((u) => {
-    axios
-      .post("/newMessage", {
-        chat_id: room,
-        sender_id: u.data.id,
-      })
-      .then((msg) => {
-        appenedMessage({ id: msg.data.id, message }, "right");
-
-        socket.emit("updateMessage", { id: msg.data.id, message });
-        socket.emit("messageCreate", {
-          message,
-          id: msg.data.id,
-          username: u.data.username,
-          room,
-        });
-      });
+  textInput.addEventListener("keypress", (e) => {
+    if (e.key == "Enter") sendContainer.click();
   });
 
-  textInput.value = "";
-});
+  sendContainer.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const message = textInput.value;
+
+    await axios.get("/userInfo").then((u) => {
+      axios
+        .post("/newMessage", {
+          chat_id: room,
+          sender_id: u.data.id,
+        })
+        .then((msg) => {
+          appenedMessage({ id: msg.data.id, message }, "right");
+
+          socket.emit("updateMessage", { id: msg.data.id, message });
+          socket.emit("messageCreate", {
+            message,
+            id: msg.data.id,
+            username: u.data.username,
+            room,
+          });
+        });
+    });
+
+    textInput.value = "";
+  });
+}
 
 socket.on("message", (data) => {
   appenedMessage(data, "left");
@@ -72,3 +76,21 @@ function appenedMessage(data, side) {
 
   new_li.scrollIntoView();
 }
+
+const checkConnect = () => {
+  const isSocketConnected = socket.connected;
+
+  if (isSocketConnected) {
+    connectInformation.className = "connected";
+  } else {
+    connectInformation.className = "disconnected";
+  }
+};
+
+setTimeout(() => {
+  checkConnect();
+}, 500);
+
+setInterval(() => {
+  checkConnect();
+}, 5000);

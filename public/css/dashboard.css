@@ -136,3 +136,31 @@ html {
 .mobile-menu {
   display: none;
 }
+
+.connected {
+  color: rgb(89, 233, 89);
+}
+
+.connected::after {
+  content: "Connected";
+}
+
+.connecting {
+  color: rgb(246, 212, 88);
+}
+
+.connecting::after {
+  content: "Connecting";
+}
+
+.disconnected {
+  color: rgb(254, 100, 100);
+}
+
+.disconnected::after {
+  content: "Disconnected";
+}
+
+#connect-information::after {
+  transition: color 0.5s ease-in-out;
+}

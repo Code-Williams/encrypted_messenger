@@ -8,3 +8,4 @@
 - [ ] Namayesh dadane dayere samte chap baraye payame jadid
 - [ ] Namayesh dadane gozine seen
 - [ ] Active kardane delete message
+- [ ] If check box for encrypt messages on new chat side enabled, add required option to password
