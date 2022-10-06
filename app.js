@@ -1,4 +1,6 @@
 const express = require("express");
+const helpers = require("./helpers/auth");
+const axios = require("axios");
 const config = require("./configs/config.json");
 const bodyParser = require("body-parser");
 const flash = require("connect-flash");
@@ -20,19 +22,6 @@ const eventsDir = fs
   .readdirSync("events")
   .filter((file) => file.endsWith(".js"));
 
-socketIO.on("connection", (socket) => {
-  console.log(`-------------------- ⚡: ${socket.id} user just connected`);
-
-  for (const i of eventsDir) {
-    const reqEvent = require(`./events/${i}`);
-    if (reqEvent.name && reqEvent.execute) {
-      socket.on(reqEvent.name, (data) => {
-        reqEvent.execute(socket, data);
-      });
-    }
-  }
-});
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(flash());
@@ -49,6 +38,19 @@ require("./helpers/passport");
 
 const routes = require("./routes");
 app.use("/", routes);
+
+socketIO.on("connection", async (socket) => {
+  console.log(`-------------------- ⚡: ${socket.id} user just connected`);
+
+  for (const i of eventsDir) {
+    const reqEvent = require(`./events/${i}`);
+    if (reqEvent.name && reqEvent.execute) {
+      socket.on(reqEvent.name, (data) => {
+        reqEvent.execute(socket, data);
+      });
+    }
+  }
+});
 
 http.listen(config.app.port, () => {
   console.log(`Server is listening to ${config.app.port}`);
