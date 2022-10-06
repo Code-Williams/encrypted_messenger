@@ -10,6 +10,12 @@ const sendContainer = document.getElementById("text_send");
 const textInput = document.getElementById("text_input");
 const connectInformation = document.getElementById("connect-information");
 
+if (roomOrg.includes("chat")) {
+  axios.get("/userInfo").then((u) => {
+    socket.userData = u.data;
+  });
+}
+
 if (roomOrg.includes("chat") && parseInt(room)) {
   socket.emit("joinRoom", {
     username: "User",
@@ -27,21 +33,15 @@ if (roomOrg.includes("chat") && parseInt(room)) {
 
     appenedMessage({ message }, "right");
 
-    await axios.get("/userInfo").then((u) => {
-      axios
-        .post("/newMessage", {
-          chat_id: room,
-          sender_id: u.data.id,
-        })
-        .then((msg) => {
-          socket.emit("updateMessage", { id: msg.data.id, message });
-          socket.emit("messageCreate", {
-            message,
-            id: msg.data.id,
-            username: u.data.username,
-            room,
-          });
-        });
+    socket.emit("newMessage", {
+      chat_id: room,
+      sender_id: socket.userData.id,
+      message,
+    });
+    socket.emit("messageCreate", {
+      message,
+      username: socket.userData.username,
+      room,
     });
 
     textInput.value = "";

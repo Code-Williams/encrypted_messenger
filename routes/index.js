@@ -34,7 +34,11 @@ Router.post("/newMessage", newMessageController.post);
 
 Router.get("/userInfo", (req, res) => {
   if (req.user) {
-    res.send(req.user);
+    res.send({
+      id: req.user.id,
+      username: req.user.username,
+      userRank: req.user.userRank,
+    });
   } else {
     res.redirect("/login");
   }
