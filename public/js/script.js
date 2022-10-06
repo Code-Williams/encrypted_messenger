@@ -25,6 +25,8 @@ if (roomOrg.includes("chat") && parseInt(room)) {
 
     const message = textInput.value;
 
+    appenedMessage({ message }, "right");
+
     await axios.get("/userInfo").then((u) => {
       axios
         .post("/newMessage", {
@@ -32,8 +34,6 @@ if (roomOrg.includes("chat") && parseInt(room)) {
           sender_id: u.data.id,
         })
         .then((msg) => {
-          appenedMessage({ id: msg.data.id, message }, "right");
-
           socket.emit("updateMessage", { id: msg.data.id, message });
           socket.emit("messageCreate", {
             message,
@@ -69,9 +69,7 @@ function appenedMessage(data, side) {
   new_div.appendChild(username_p);
   new_div.appendChild(message_p);
 
-  new_li.id = data.id;
-
-  username_p.innerHTML = "You";
+  username_p.innerHTML = side == left ? data.username : "You";
   message_p.innerHTML = data.message;
 
   new_li.scrollIntoView();
