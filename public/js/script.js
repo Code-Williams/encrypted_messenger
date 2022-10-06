@@ -10,7 +10,7 @@ const sendContainer = document.getElementById("text_send");
 const textInput = document.getElementById("text_input");
 const connectInformation = document.getElementById("connect-information");
 
-if (roomOrg.includes("chat")) {
+if (roomOrg.includes("chat") && parseInt(room)) {
   socket.emit("joinRoom", {
     username: "User",
     room,
@@ -83,6 +83,7 @@ const checkConnect = () => {
   if (isSocketConnected) {
     connectInformation.className = "connected";
   } else {
+    socket.connect();
     connectInformation.className = "disconnected";
   }
 };
