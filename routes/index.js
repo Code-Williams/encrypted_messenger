@@ -11,7 +11,7 @@ Router.get("/", homePageController.get);
 
 const loginController = require("../controllers/loginController");
 Router.get("/voroodi", isUserNotLoggedIn, loginController.get);
-Router.get("/avoroodi", isUserNotLoggedIn, loginController.post, (req, res) => { res.render("/dashboardViewer") })
+Router.get("/avoroodi", isUserNotLoggedIn, loginController.post, (req, res) => { res.render("dashView") })
 Router.post(
   "/voroodi",
   isUserNotLoggedIn,
